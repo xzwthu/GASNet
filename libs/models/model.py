@@ -40,7 +40,7 @@ class Discriminator(nn.Module):
         # block_num = 300
         self.input_channel = input_channel
         self.basic_channel = basic_channel
-        self.layer_num = 2*5*5
+        self.layer_num = basic_channel*16*2*5*5
         self.layer = nn.Linear(self.layer_num,classes)
         self.classes = classes
         self.cov_init = self.cir_init(input_channel,basic_channel) #(32,80,80)
@@ -56,7 +56,7 @@ class Discriminator(nn.Module):
         # self.cov10 = self.cir_block(basic_channel*8)
         self.cov11 = self.cir_block(basic_channel*8)
         self.cov12 = self.cir_down_block(basic_channel*8,basic_channel*16) #(32,80,80)/16
-        # self.cov13 = self.cir_block(basic_channel*16)
+        self.cov13 = self.cir_block(basic_channel*16)
         self.out_conv = nn.Conv3d(basic_channel*16,1,1,1,0)
         self.flat_conv2 = nn.Sequential(
             nn.Conv3d(basic_channel*16,1,1,1,0),
@@ -75,14 +75,13 @@ class Discriminator(nn.Module):
         # x_cov6 = x_cov6*(x_att)
         x_cov8 = self.cov8(x_cov6)
         x_cov9 = self.cov9(x_cov8)
-        # x_cov11 = self.cov11(x_cov9)
-        x_cov12 = self.cov12(x_cov9)
-        x_flat = self.flat_conv2(x_cov12)
-        x_flatten = x_flat.view(x_flat.size(0),-1)
+        x_cov11 = self.cov11(x_cov9)
+        x_cov12 = self.cov12(x_cov11)
+        x_flatten = x_flat.view(x_cov12.size(0),-1)
         out1 = self.layer(x_flatten)
-        out2 = self.out_conv(x_cov12)
+        # out2 = self.out_conv(x_cov12)
         # import pdb; pdb.set_trace()
-        return [out1,out2],x_att
+        return [out1],x_att
     def cir_block(self,basic_channel):
         return nn.Sequential(
             torch.nn.utils.spectral_norm(nn.Conv3d(basic_channel,basic_channel,kernel_size=(1,3,3),stride=(1,1,1),padding=(0,1,1))),

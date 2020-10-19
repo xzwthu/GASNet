@@ -7,9 +7,10 @@ DATASET:
     N_CLASSES: 1
     IGNORE_LABEL: 255 
     SCALES: [1]
+    ## splition of the data stored in root dir, including train and valid, voxel-level labeled data
+    # and volume-level labeled data of disease and heahlth.
     SPLIT:
-        NAIVE: train_id_naive
-        LABELED: train_id_L_1_covid
+        LABELED: train_id_L_1_covid 
         WO_LABEL: train_id_wL
         HEALTHY: train_id_H
         VALID: val_id2
@@ -31,9 +32,9 @@ IMAGE:
 
 INIT_MODEL:
     KK: oo
-    UNET: /home/xuzhanwei/GANtoSeg2/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointU_194530.66.pth
-    G: /home/xuzhanwei/GANtoSeg2/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointG_194530.66.pth
-    D: /home/xuzhanwei/GANtoSeg2/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointD_194530.66.pth
+    # UNET: /home/xuzhanwei/GASNet/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointU_20000.pth
+    # G: /home/xuzhanwei/GASNet/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointG_20000.pth
+    # D: /home/xuzhanwei/GASNet/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointD_20000.pth
     
 SOLVER:
     BATCH_SIZE:

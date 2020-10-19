@@ -21,6 +21,31 @@ Three modules with optimizable parameters compose the framework of GASNet, the s
 - numpy, skimage, scipy, SimpleITK, and imgaug
 
 ## Usage 
-To run the code both in training and test, three dirs are needed, including ./images to restore CT volumes, ./lung to restore lung segmentation results, and ./lesion to restore lesion labels. Change the root path of the dataset in ./configs/Gan.yaml to your dataset path. 
-The splition of voxel-level labeled data 
-$$I_l$$
+### data-preprocessing 
+Your need do some data-preprocessing work before use the data to train GASNet. An open-soure lung segmentation mask is available at <https://github.com/JoHof/lungmask> so you can get the bound box around the lung area. The 3D volume sample of each CT, along with the lung mask and lesion segmentation label (if any),
+is cropped along the lung mask. The cropped CT volume is then
+resized into 40×160×160, and its value is clipped into [-1250,250]. 
+
+
+To run the code both in training and testing, three dirs are needed, including ./images to restore CT volumes, ./lung to restore lung segmentation results, and ./lesion to restore lesion labels. Change the root path of the dataset in ./configs/Gan.yaml to your dataset path and modify the splition configuration according to your needs. 
+
+### training
+Simply run 
+```
+sh train.sh
+```
+to train GASNet. To add or delete the constraint losses metioned in the paper, you can change the prefix of EXP.ID in the configure file.
+
+### testing
+Simply change the path to your trained model and run 
+```
+sh test.sh
+```
+to test the performance of GASNet. 
+## Visualization of segmentation results
+![vis2](./pics/vis2.png)
+
+
+## Contact
+Never mind open issues about the code or data. If you have any further questions about GASNet, please contact me <xzw14@tsinghua.org.cn>
+
