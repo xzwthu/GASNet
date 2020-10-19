@@ -6,8 +6,8 @@ This is a PyTorch implementation of GASNet for lesion segmentation of COVID-19 i
 Three modules with optimizable parameters compose the framework of GASNet, the segmenter (S), the generator (G), and the discriminator (D). 
     The segmenter (S) predicts the infected areas given a CT volume. The generator (G) generates
     a new volume. By replacing lesion areas in the original volume by the generated volume,
-    a synthesis volume is obtained. 
-    The synthetic volumes and the real healthy volumes are input into a discriminator (D) for classification. The parameters of the G and the S are
+    a synthetic volume is obtained. 
+    The synthetic volume and the real healthy volume are input into a discriminator (D) for classification. The parameters of the G and the S are
       optimized to make the synthetic volume look as similar as possible to a real healthy volume, so that the discriminator can not distinguish. 
       Original COVID-19 volume and the generated volume are also fed into the D as auxiliary constraints. 
       Only the S part is needed during the test, 
@@ -22,12 +22,12 @@ Three modules with optimizable parameters compose the framework of GASNet, the s
 
 ## Usage 
 ### Data-preprocessing 
-Your need do some data-preprocessing work before use the data to train GASNet. An open-soure lung segmentation mask is available at <https://github.com/JoHof/lungmask> so you can get the bound box around the lung area. The 3D volume sample of each CT, along with the lung mask and lesion segmentation label (if any),
-is cropped along the lung mask. The cropped CT volume is then
+Your need to do some data-preprocessing work before using the data to train GASNet. An open-soure lung segmentation mask is available at <https://github.com/JoHof/lungmask>, and you can use it to get the bound box around the lung area. The 3D volume sample of each CT, along with the lung mask and lesion segmentation label (if any),
+is cropped along the lung area. The cropped CT volume is then
 resized into 40×160×160, and its value is clipped into [-1250,250]. 
 
 
-To run the code both in training and testing, three dirs are needed, including ./images to restore CT volumes, ./lung to restore lung segmentation results, and ./lesion to restore lesion labels. Change the root path of the dataset in ./configs/Gan.yaml to your dataset path and modify the splition configuration according to your needs. 
+To run the code both in training and testing, three dirs are needed, including *./images* to store CT volumes, *./lung* to store lung segmentation results, and *./lesion* to store lesion labels. Change the root path of the dataset in *./configs/Gan.yaml* to your dataset path and modify the splition configuration according to your needs. 
 
 ### Training
 Simply run 
@@ -43,10 +43,10 @@ sh test.sh
 ```
 to test the performance of GASNet. 
 ### Result and visualization
-- Dataset-A consists of 20 CT volumes and 10 of them have been transformed to the range of [0, 255]. Considering the original CT values are unavailabel, we divide them into two subsets and test the performances respectively.
- The dataset is availabel at [CovidSeg](https://zenodo.org/record/3757476#.X41Jj-biuiN)
+- Dataset-A consists of 20 CT volumes and 10 of them have been transformed to the range of [0, 255]. Considering the original CT values are unavailable, we divide them into two subsets and test the performances respectively.
+ The dataset is available at [CovidSeg](https://zenodo.org/record/3757476#.X41Jj-biuiN)
 - Dataset-B contains 9 COVID-19 CT volumes. 
-The dataset is availabel at [MedSeg](https://medicalsegmentation.com/covid19/)
+The dataset is available at [MedSeg](https://medicalsegmentation.com/covid19/)
 - Dataset-C and Dataset-D (Volume-level annotation) are from MosMed. which consists of 856 CT volumes
 with COVID-19 related findings as well as 254 CT volumes
 without such findings. 50 COVID-19 cases have voxel-level
@@ -55,7 +55,7 @@ rest of the data, consisting of 254 healthy volumes and 806
 COVID-19 volumes excluding 50 voxel-level labeled samples,
 forms Dataset-D. The diagnosis results of the CT volumes can
 be used as volume-level labels directly.
-The dataset is availabel at [MosMed](https://mosmed.ai/en/)
+The dataset is available at [MosMed](https://mosmed.ai/en/)
 - Dataset-E (Volume-level annotation) is a large dataset
 with volume-level annotation we collected, in which 1,678
 COVID-19 CT volumes come from the Wuhan Union Hospital, whose patients have been diagnosed as COVID-19 positive
