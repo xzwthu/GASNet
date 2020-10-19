@@ -50,7 +50,7 @@ The dataset is available at [MedSeg](https://medicalsegmentation.com/covid19/)
 - Dataset-C and Dataset-D (Volume-level annotation) are from MosMed. which consists of 856 CT volumes
 with COVID-19 related findings as well as 254 CT volumes
 without such findings. 50 COVID-19 cases have voxel-level
-annotations of lesions by experts, which forms Dataset-C. The
+annotation of lesions by experts, which forms Dataset-C. The
 rest of the data, consisting of 254 healthy volumes and 806
 COVID-19 volumes excluding 50 voxel-level labeled samples,
 forms Dataset-D. The diagnosis results of the CT volumes can
@@ -62,13 +62,13 @@ COVID-19 CT volumes come from the Wuhan Union Hospital, whose patients have been
 by nucleic acid testing, and 1,031 healthy CT volumes come
 from the routine physical examination.
 
-We trained GASNet based on Dataset-E and one voxel-level labeled sample from Dataset-A and test the performance on the rest of the three public dataset with lesion annotations. We then replaced the Dataset-E with Dataset-D as our volume-level annotation dataset and finetuned the model. The Dice scores of these two trained models are shown below:
+We trained GASNet based on Dataset-E and one voxel-level labeled sample from Dataset-A and test the performance on the rest of the three public dataset with lesion annotation. We then replaced the Dataset-E with Dataset-D as our volume-level annotation dataset and finetuned the model. The Dice scores of these two trained models are shown below:
 |                 | Dataset-A_sub1 | Dataset-A_sub2 | Dataset-B    | Dataset-C    |
 | --------------- | -------------- | -------------- | ------------ | ------------ |
 | GASNet          | 76.7±6.1(%)   | 63.2±19.4(%)  | 60.2±23.4(%) | 54.2±22.4(%) |
 | GASNet_finetune | -              | -              | 59.7±18.5(%) | 58.9±24.4(%) |
 
-For detailed results of our experiments and comparison between GASNet and other existing methods on COVID-19 lesion segmentation, pleas refer to our paper.
+For detailed results of our experiments and comparison between GASNet and other existing methods on COVID-19 lesion segmentation, please refer to our paper.
 ![vis2](./pics/vis2.png)
 
 
