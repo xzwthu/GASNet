@@ -1,0 +1,68 @@
+EXP:
+    # ID: sample_focal_recons_MIL_
+    ID: sample1_recons_focal_origImgToD_genImgToD_perception_1
+    OUTPUT_DIR: data
+DATASET:
+    ROOT: /Extra/xuzhanwei/CoV19_data/cropData/
+    N_CLASSES: 1
+    IGNORE_LABEL: 255 
+    SCALES: [1]
+    SPLIT:
+        FIXIMAGE: train_id_wL
+        NAIVE: train_id_naive
+        LABELED: train_id_L_1_covid
+        WO_LABEL: train_id_wL
+        HEALTHY: train_id_H
+        VALID: val_id2
+        VALIDWL: train_id_mos_wL_forsys
+        VALIDH: train_id_mos_H_forsys
+
+DATALOADER:
+    NUM_WORKERS: 16  # set to 0 during inference!!!
+
+IMAGE:
+    MEAN:
+        R: 122.675
+        G: 116.669
+        B: 104.008
+    SIZE:
+        BASE: # None
+        TRAIN: 128
+        TEST: 128
+
+INIT_MODEL:
+    KK: oo
+    UNET: /home/xuzhanwei/GANtoSeg2/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointU_194530.66.pth
+    G: /home/xuzhanwei/GANtoSeg2/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointG_194530.66.pth
+    D: /home/xuzhanwei/GANtoSeg2/data/models/sample1_recons_focal_origImgToD_genImgToD_perception/checkpointD_194530.66.pth
+    
+SOLVER:
+    BATCH_SIZE:
+        TRAIN: 4
+        TEST: 1
+    ITER_SIZE: 2
+    ITER_SAVE: 50
+    ITER_TB: 1
+    OPTIMIZER:
+        NAME: sgd
+        LR: 1.0e-5
+        WEIGHT_DECAY: 1.0e-3
+        MOMENTUM: 0.9
+    ITER_MAX: 300000
+    LR_SCHEDULER_D:
+        name: step_lr
+        step_size: 35000
+        gamma: 0.5
+    LR_SCHEDULER_U:
+        name: step_lr
+        step_size: 20000
+        gamma: 0.5
+    LR_SCHEDULER_D:
+        name: step_lr
+        step_size: 30000
+        gamma: 0.5
+    LR_SCHEDULER_G:
+        name: step_lr
+        step_size: 30000
+        gamma: 0.5
+    AVERAGE_LOSS: 20
