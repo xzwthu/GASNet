@@ -1,6 +1,6 @@
 EXP:
     # ID: sample_focal_recons_MIL_
-    ID: sample1_recons_focal_origImgToD_genImgToD_perception_1
+    ID: sample1_recons_origImgToD_genImgToD_perception_MIL
     OUTPUT_DIR: data
 DATASET:
     ROOT: /Extra/xuzhanwei/CoV19_data/cropData/
@@ -8,7 +8,6 @@ DATASET:
     IGNORE_LABEL: 255 
     SCALES: [1]
     SPLIT:
-        FIXIMAGE: train_id_wL
         NAIVE: train_id_naive
         LABELED: train_id_L_1_covid
         WO_LABEL: train_id_wL
