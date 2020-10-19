@@ -47,5 +47,5 @@ to test the performance of GASNet.
 
 
 ## Contact
-Never mind open issues about the code or data. If you have any further questions about GASNet, please contact me <xzw14@tsinghua.org.cn>
+Never mind opening issues about the code or data. If you have any further questions about GASNet, please contact me <xzw14@tsinghua.org.cn>
 
