@@ -1,5 +1,5 @@
 # GASNet
-This is a PyTorch implementation of GASNet for lesion segmentation of COVID-19 in a weakly-supervised scenario.
+This is a PyTorch implementation of GASNet for lesion segmentation of COVID-19 in a weakly-supervised scenario, source code of the paper: [GASNet: Weakly-supervised Framework for COVID-19 Lesion Segmentation](https://arxiv.org/abs/2010.09456?context=cs.CV). 
 
 ## Architecture
 ![GASNet](./pics/pipeline.png "pipeline of GASNet")
@@ -70,7 +70,18 @@ We trained GASNet based on Dataset-E and one voxel-level labeled sample from Dat
 
 For detailed results of our experiments and comparison between GASNet and other existing methods on COVID-19 lesion segmentation, please refer to our paper.
 ![vis2](./pics/vis2.png)
-
+## Citation
+Please remember to cite our article if you find it helpful to your work
+```
+@misc{xu2020gasnet,
+      title={GASNet: Weakly-supervised Framework for COVID-19 Lesion Segmentation}, 
+      author={Zhanwei Xu and Yukun Cao and Cheng Jin and Guozhu Shao and Xiaoqing Liu and Jie Zhou and Heshui Shi and Jianjiang Feng},
+      year={2020},
+      eprint={2010.09456},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV}
+}
+```
 
 ## Contact
 Never mind opening issues about the code or data. If you have any further questions about GASNet, please contact me <xzw14@tsinghua.org.cn>
