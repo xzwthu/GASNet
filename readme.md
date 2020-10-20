@@ -22,7 +22,7 @@ Three modules with optimizable parameters compose the framework of GASNet, the s
 
 ## Usage 
 ### Data-preprocessing 
-Your need to do some data-preprocessing work before using the data to train GASNet. An open-soure lung segmentation mask is available at <https://github.com/JoHof/lungmask>, and you can use it to get the bound box around the lung area. The 3D volume sample of each CT, along with the lung mask and lesion segmentation label (if any),
+Your need to do some data-preprocessing work before using the data to train GASNet. An open-soure lung segmentation model is available at <https://github.com/JoHof/lungmask>, and you can use it to get the bound box around the lung area. The 3D volume sample of each CT, along with the lung mask and lesion segmentation label (if any),
 is cropped along the lung area. The cropped CT volume is then
 resized into 40×160×160, and its value is clipped into [-1250,250]. 
 
