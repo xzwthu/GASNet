@@ -26,6 +26,7 @@ Your need to do some data-preprocessing work before using the data to train GASN
 is cropped along the lung area. The cropped CT volume is then
 resized into 40×160×160, and its value is clipped into [-1250,250]. 
 
+lungCrop.py is a script code for preprocessing. You can directly call the LungMaskCrop class to pipelining your data, and then store the results in the corresponding folder directory.
 
 To run the code both in training and testing, three dirs are needed, including *./images* to store CT volumes, *./lung* to store lung segmentation results, and *./lesion* to store lesion labels. Change the root path of the dataset in *./configs/Gan.yaml* to your dataset path and modify the splition configuration according to your needs. 
 
