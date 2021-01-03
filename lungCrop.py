@@ -9,14 +9,14 @@ import os
 
 class LungMaskCrop():
     def __init__(self):
-        self.model = mask.get_moel('unet','R231CovidWeb')
-        
+        self.model = mask.get_model('unet','R231')
+
     def crop(self,imagepath,labelpath=None):
-        
+      
         input_image = sitk.ReadImage(imagepath)
         image_array = sitk.GetArrayFromImage(input_image)
         try:
-            segmentation = mask.apply(input_image, model = model1,batch_size=3)
+            segmentation = mask.apply(input_image, model = None, force_cpu=False,batch_size=3)
         except:
             print(imagepath)
         labels = measure.label(segmentation)
@@ -48,12 +48,18 @@ class LungMaskCrop():
             label_image = sitk.ReadImage(labelpath)
             label_array = sitk.GetArrayFromImage(label_image)
             label_seg = label_array[xmin:xmax,ymin:ymax,zmin:zmax]
+            x,y,z = label_seg.shape
+            label_seg = zoom(label_seg,(40/x,160/y,160/z),order=0)
             label_image = sitk.GetImageFromArray(label_seg.astype('uint8'))
             return image_image,seg_image,label_image
-        return image_image,seg_image
+        return image_image,seg_image 
 
 if __name__ == "__main__":
     LungMask = LungMaskCrop()
-    imagepath = 'path/to/image'
-    labelpath = 'path/to/label'
+    imagepath = './data/rp_im/1.nii.gz'
+    labelpath = './data/rp_lung_msk/1.nii.gz'
     crop_image,crop_lung,crop_lesion = LungMask.crop(imagepath,labelpath=labelpath)
+    sitk.WriteImage(crop_image, 'crop_image.nii')
+    sitk.WriteImage(crop_lung, 'crop_lung.nii')
+    sitk.WriteImage(crop_lesion, 'crop_lesion.nii')
+
