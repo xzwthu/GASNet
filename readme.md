@@ -43,6 +43,8 @@ Simply change the path to your trained model and run
 sh test.sh
 ```
 to test the performance of GASNet. 
+
+* Because the input of the test code is a cropped image, the size of the segmentation result is 160 × 160 × 40. If you want to get the segmentation result of the same size as the original image, you can run *post_processing.py*. You need to modify the storage paths of the original image and the GASNet segmentation result in the code.
 ### Result and visualization
 - Dataset-A consists of 20 CT volumes and 10 of them have been transformed to the range of [0, 255]. Considering the original CT values are unavailable, we divide them into two subsets and test the performances respectively.
  The dataset is available at [CovidSeg](https://zenodo.org/record/3757476#.X41Jj-biuiN)
